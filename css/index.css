@@ -1,0 +1,43 @@
+input,textarea{outline: none;border: none;font-size: 15px;}
+*{margin: 0;padding: 0;}
+ul,li{list-style: none;}
+html{font-family: '微软雅黑';}
+.container{width: 400px;height: 600px;margin: 0 auto;border-radius: 10px;background: #eee;}
+.container .title{text-align: center;margin-top: 10px;position: relative;top: 10px;}
+.container .inputext{width: 300px;height: 35px;margin: 20px 0 0 10px;border-radius: 10px;padding: 0 10px;}
+.container .conarea{height: auto;width: 380px;margin: 10px;position: relative;}
+.container .areaval{width: 3100%;height: 150px;max-width: 360px;max-height: 170px;border-radius: 10px;padding: 10px;overflow:hidden; }
+.container .conarea .textnum{position: absolute;bottom:5px;left: 10px;}
+.container .conarea .textnum1{position: absolute;bottom:5px;left: 100px;color: red;}
+.container .conarea .textbtn{position: absolute;bottom:10px;right:30px;background: blue;height: 30px;width: 50px;color: white;cursor: pointer;border-radius: 5px;}
+
+.container .askarea{width: 380px;margin: 0 auto;background: white;height: 300px;border-radius: 10px;position: relative;overflow:hidden;   }
+.container .askarea ul{width: 100%;height:240px;overflow-y: scroll;overflow-x:hidden; }
+.container .askarea input{width: 340px;height: 30px;background: white;padding: 0 10px;border: 1px solid #ccc;margin: 10px 10px;border-radius: 5px;}
+.container .askarea .search{position: absolute;background: url('../image/search.png') no-repeat;display: block;top: 17px;right: 20px;z-index: 20;height: 20px;width: 20px;cursor: pointer;}
+.container .askarea ul li{width: 360px;margin: 0 10px;height: auto;position: relative;border-top: 1px solid #ddd;}
+.container .askarea ul li:first-child{border-top: none;}
+.container .askarea ul li .msgcontent{width: 300px;height: auto;max-width: 300px;margin: 10px 0 10px 0;font-size: 15px;}
+.container .askarea ul li .delet{position: absolute;font-size: 33px;-webkit-transform: rotate(45deg);transform: rotate(45deg);right: 10px;top: -10px;cursor: pointer;}
+.container .askarea ul li .pig{width:auto;height: 30px;font-size: 12px;color: #fff;margin-left: 10px;position: relative;display: inline-block;}
+.container .askarea ul li .pig li{float: left;display: inline-block;height: 20px;width: 70px;border: none;background: #aaa;line-height: 20px;text-align: center;margin-left: -9px;}
+.container .askarea ul li .pig li span{-webkit-transform: rotate(45deg);transform: rotate(45deg);display: inline-block;cursor: pointer;font-size: 14px;line-height: 20px}
+.container .askarea ul li .pig .task{height: 60px;width: 70px;z-index: 10;}
+.container .askarea ul li .pig .task p{width: 70px;height: 20px;}
+.container .askarea ul li .pig .task p:hover{background: #333;cursor: pointer;}
+.container .askarea ul li .pig .plus{width: 15px;background: #fff;color: #000;font-size: 20px;cursor: pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
