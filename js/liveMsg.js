@@ -1,10 +1,10 @@
- 
+
  //遍历sessionStorage
 		function mls() {
 			var arr = [],
 				key,
 				value;
-			
+
 			for (var i = 0 , len = sessionStorage.length; i < len; i++) {
 				key = sessionStorage.key(i);
 				value = JSON.parse(sessionStorage.getItem(key));
@@ -26,7 +26,7 @@
 			for (var i = 0 , len = sessionStorage.length; i < len; i++) {
 				key = sessionStorage.key(i);
 				value = JSON.parse(sessionStorage.getItem(key));
-				
+
 				if (value.msg == seat.msg) {
 					if ( useTak == '用户反馈') {
 						value.user = blo;
@@ -60,17 +60,17 @@
 			self.searVal = ko.observable();
 			//字数提醒
 			self.stop = ko.observable(false);
-			
+
 
 			//public
 			self.public = function (set,msga,blo) {
-				var seat = set, 
+				var seat = set,
 					useTak = msga,
 					blon = blo,
 					msArr = self.msgAyrray,
 				    newArr = self.msgAyrray(),
 				    mlsArr;
-				
+
 				modifySess( seat , useTak , blon);
 				//刷新页面内容
 				mlsArr= mls()
@@ -148,7 +148,7 @@
 				self.public(seat,useTak,blon);
 				self.searchBtn();
 			};
-			
+
 			//删除待处理
 			self.userMek_n = function (set) {
 				var seat = set,
@@ -201,7 +201,7 @@
 					newArr.remove(function(item) {
 					 	return (item.mek_y == false);
 					});
-					
+
 				}else if ( seVal == '待处理' ) {
 					newArr.remove(function(item) {
 					 	return (item.mek_n == false);
@@ -221,6 +221,9 @@
 					uM = self.userMsg(),
 					user,
 					msg;
+        //
+        self.textNum('0/300')
+
 				//判断留言/用户名内容是否为空
 				if (uN && uM) {
 					//添加留言道sessionStorage到
@@ -228,7 +231,7 @@
 
 						ff = sessionStorage.length,
 						ff1 = 'item'+ff,
-						obj ={ 
+						obj ={
 								msg: msgConten,
 								user: true,
 								mek_y: false,
@@ -241,7 +244,7 @@
 					//清空文本框/域内容
 					self.userName('');
 					self.userMsg('');
-			 		
+
 			 		//显示提交留言到页面
 			 		self.msgAyrray.push({
 			 			msg:msgConten,
@@ -264,11 +267,11 @@
 							self.userMsg('');
 							msg = null;
 						},800);
-						
+
 					}
 				}
 			};
-			
+
 			//删除元素
 			self.deletItem = function (set) {
 				var deletArr = self.msgAyrray,
@@ -276,7 +279,7 @@
 					stVal = set.msg,
 					key,
 					value;
-				//遍历寻找sessionStorage对应值并删除	
+				//遍历寻找sessionStorage对应值并删除
 				for (var i = 0 , len = sessionStorage.length; i < len; i++) {
 					key = sessionStorage.key(i);
 					value = JSON.parse(sessionStorage.getItem(key));
@@ -288,5 +291,5 @@
 				self.msgAyrray.remove(set)
 			}
 		};
-		
+
 		ko.applyBindings(new myMsg());
