@@ -227,7 +227,7 @@
 				//判断留言/用户名内容是否为空
 				if (uN && uM) {
 					//添加留言道sessionStorage到
-					var msgConten = uN+' : '+uM,
+					var msgConten = uN+': '+uM,
 
 						ff = sessionStorage.length,
 						ff1 = 'item'+ff,
