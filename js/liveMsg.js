@@ -15,11 +15,12 @@
 		};
 
 		//修改sessionStorage数据
-		function modifySess (set,msga,blon) {
+		function modifySess (set,msga,blon,mek) {
 			var key,
 				value,
 				newValue,
 				blo = blon,
+				meck = mek,
 				useTak = msga,
 				seat = set;
 			//更该sessionStorage数据
@@ -32,8 +33,10 @@
 						value.user = blo;
 					}else if ( useTak == '已处理' ) {
 						value.mek_y = blo;
+						meck && (value.mek_n = false);
 					}else if ( useTak == '待处理' ){
 						value.mek_n = blo;
+						meck && (value.mek_y = false);
 					}else if ( useTak == 'plus' ) {
 						value.plus = blo;
 					}
@@ -63,15 +66,16 @@
 
 
 			//public
-			self.public = function (set,msga,blo) {
+			self.public = function (set,msga,blo,mek) {
 				var seat = set,
 					useTak = msga,
 					blon = blo,
+					meck = mek,
 					msArr = self.msgAyrray,
 				    newArr = self.msgAyrray(),
 				    mlsArr;
 
-				modifySess( seat , useTak , blon);
+				modifySess( seat , useTak , blon ,meck);
 				//刷新页面内容
 				mlsArr= mls()
 				msArr.removeAll();
@@ -114,8 +118,9 @@
 			self.plus_y = function (set) {
 				var seat = set,
 					blon = true,
+					mek_n = 'y',
 					useTak = '已处理';
-				self.public(seat,useTak,blon);
+				self.public(seat,useTak,blon,mek_n);
 				self.takPlusBtn(seat);
 				self.searchBtn();
 			};
@@ -124,8 +129,9 @@
 			self.plus_n = function (set) {
 				var seat = set,
 					blon = true,
+					mek_y = 'n',
 					useTak = '待处理';
-				self.public(seat,useTak,blon);
+				self.public(seat,useTak,blon,mek_y);
 				self.takPlusBtn(seat);
 				self.searchBtn();
 			};
@@ -279,6 +285,8 @@
 					stVal = set.msg,
 					key,
 					value;
+					//删除页面对应的元素
+					deletArr.remove(set)
 				//遍历寻找sessionStorage对应值并删除
 				for (var i = 0 , len = sessionStorage.length; i < len; i++) {
 					key = sessionStorage.key(i);
@@ -287,8 +295,7 @@
 						sessionStorage.removeItem(key);
 					}
 				}
-				//删除页面对应的元素
-				self.msgAyrray.remove(set)
+
 			}
 		};
 
