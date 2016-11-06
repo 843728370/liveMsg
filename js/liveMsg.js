@@ -154,7 +154,6 @@
 					}
 				});
 			};
-//**************************************
 
 			//点击回复
 			self.replyBtn = function () {
@@ -242,7 +241,7 @@
 						self.stop(true);
 					setTime = setTimeout(function () {
 						self.stop(false);
-						setTime = null;
+						clearTimeout(setTime);
 					},1500);
 					}else{
 						self.textNum(texts);
@@ -333,13 +332,13 @@
 						self.userName('用户名不能为空!');
 						user = setTimeout(function () {
 							self.userName('');
-							user = null;
+							clearTimeout(user);
 						},800);
 					}else if( !uM ) {
 						self.userMsg('留言内容不能为空!');
 						msg = setTimeout(function () {
 							self.userMsg('');
-							msg = null;
+							clearTimeout(msg);
 						},800);
 
 					}
