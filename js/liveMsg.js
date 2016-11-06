@@ -49,7 +49,6 @@
 		//knockout function
 		function myMsg() {
 			//获取this对象
-
 			var self = this;
 			//用户名
 			self.userName = ko.observable();
@@ -63,8 +62,14 @@
 			self.searVal = ko.observable();
 			//字数提醒
 			self.stop = ko.observable(false);
-
-
+			//回复框是否显示
+			self.reply_conten = ko.observable(false);
+			//回复框背景是否显示
+			self.reply_bg = ko.observable(false);
+			//回复用户名
+			self.reply_name = ko.observable();
+			//回复内容
+			self.reply_msg = ko.observable();
 			//public
 			self.public = function (set,msga,blo,mek) {
 				var seat = set,
@@ -134,6 +139,61 @@
 				self.public(seat,useTak,blon,mek_y);
 				self.takPlusBtn(seat);
 				self.searchBtn();
+			};
+
+			//添加回复
+			self.plus_reply = function (set) {
+				var seat = set,
+						mArr =self.msgAyrray();
+				self.reply_conten(true);
+				self.reply_bg(true);
+				self.takPlusBtn(seat);
+				mArr.forEach(function (e) {
+					if (e.msg == seat.msg) {
+						e.reply_blo = true;
+					}
+				});
+			};
+//**************************************
+
+			//点击回复
+			self.replyBtn = function () {
+				var msg = self.reply_name()+': '+self.reply_msg(),
+						mArr = self.msgAyrray(),
+						mmArr = self.msgAyrray,
+						newArr,
+						newValue,
+						key,
+						value,
+						mlsArr;
+
+				self.reply_name('');
+				self.reply_msg('');
+				self.reply_conten(false);
+				self.reply_bg(false);
+				mArr.forEach(function (e) {
+					if (e.reply_blo == true) {
+						newArr = e;
+						e.reply_blo =false;
+
+					}
+				});
+				for (var i = 0 , len = sessionStorage.length; i < len; i++) {
+					key = sessionStorage.key(i);
+					value = JSON.parse(sessionStorage.getItem(key));
+					if ( value.msg == newArr.msg) {
+						value.reply = msg;
+						newValue = JSON.stringify(value);
+						sessionStorage.setItem( key , newValue );
+
+					};
+				};
+				mlsArr = mls();
+				mmArr.removeAll();
+				mlsArr.forEach(function (e) {
+					//遍历sessionStorage数据
+					mmArr.push(e);
+				});
 			};
 
 			//删除用户反馈
@@ -212,6 +272,10 @@
 					newArr.remove(function(item) {
 					 	return (item.mek_n == false);
 					});
+				}else if ( seVal == '回复' ){
+					newArr.remove(function(item) {
+					 	return (item.reply =='');
+					});
 				}else{
 					//刷新页面数据
 					newArr.removeAll();
@@ -242,7 +306,9 @@
 								user: true,
 								mek_y: false,
 								mek_n:true,
-								plus:false
+								plus:false,
+								reply_blo:false,
+								reply:''
 							},
 						//转化js对象为json
 						json = JSON.stringify(obj);
@@ -257,7 +323,9 @@
 			 			user: true,
 						mek_y: false,
 						mek_n:true,
-						plus:false
+						plus:false,
+						reply_blo:false,
+						reply:''
 			 		});
 				}else{
 					//判断用户名和留言内容是否为空

@@ -9,16 +9,24 @@
 <body>
 	<div class="container" id="container">
 		<h3 class="title">留言板</h3>
-	    <input type="text" class="inputext" name="name" placeholder="请输入昵称" data-bind="value: userName">
-	    <div class="conarea">
-	        <form data-bind="submit: sendMsg">
-	        	<textarea name="mas" class="areaval" placeholder="请输入留言内容,不超过300字" data-bind="value: userMsg , event: {keyup: areaWord}"></textarea>
-	   			<span  class="textnum" id="sum" data-bind="text: textNum"></span>
-	   			<span class="textnum1" data-bind="visible: stop">字数在300子以内！</span>
-	   			<input type="submit" value="发布" class="textbtn">
-	   		</form>
-	   	</div>
-		
+	  <input type="text" class="inputext" name="name" placeholder="请输入昵称" data-bind="value: userName">
+	  <div class="conarea">
+	    <form data-bind="submit: sendMsg">
+	    	<textarea name="mas" class="areaval" placeholder="请输入留言内容,不超过300字" data-bind="value: userMsg , event: {keyup: areaWord}"></textarea>
+	 			<span  class="textnum" id="sum" data-bind="text: textNum"></span>
+				<span class="textnum1" data-bind="visible: stop">字数在300子以内！</span>
+				<input type="submit" value="发布" class="textbtn">
+			</form>
+	 	</div>
+		<div class="reply" data-bind="visible: reply_conten">
+			<form class="reply-form">
+				<input type="text" name="name" class="reply-form-user" data-bind="value: reply_name">
+				<textarea name="name" class="reply-form-area" data-bind="value: reply_msg"></textarea>
+				<input type="submit" value="回复" class="reply-form-submit" data-bind="click: replyBtn">
+			</form>
+		</div>
+		<div class="repbg" data-bind="visible: reply_bg"></div>
+
 		<div class="askarea">
 			<input type="text" name="search" placeholder="输入标签筛选留言，如：用户反馈" data-bind="value: searVal">
 			<span class="search" data-bind="click: searchBtn"></span>
@@ -28,6 +36,8 @@
 					<span class="delet" data-bind="click: $root.deletItem">
 						+
 					</span>
+					<p class="reply_content" data-bind="text: item.reply">
+					</p>
 					<ol class="pig">
 						<li data-bind="visible: item.user">
 							用户反馈
@@ -56,6 +66,9 @@
 							</p>
 							<p data-bind="click: $root.plus_n">
 								待处理
+							</p>
+							<p data-bind="click: $root.plus_reply">
+								回复
 							</p>
 						</li>
 						<li class="plus" data-bind="click: $root.plusBtn">
